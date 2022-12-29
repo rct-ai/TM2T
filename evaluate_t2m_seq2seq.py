@@ -15,8 +15,9 @@ from scripts.motion_process import *
 from torch.utils.data import DataLoader
 from utils.word_vectorizer import WordVectorizerV2
 from utils.utils import *
+import sys
 
-
+sys.path.append(os.path.dirname(os.getcwd()))
 def plot_t2m(data, captions, save_dir):
     data = data * std + mean
     for i in range(len(data)):
@@ -107,7 +108,7 @@ if __name__ == '__main__':
     enc_channels = [1024, opt.dim_vq_latent]
     dec_channels = [opt.dim_vq_latent, 1024, dim_pose]
 
-    w_vectorizer = WordVectorizerV2('../text2motion/glove', 'our_vab')
+    w_vectorizer = WordVectorizerV2('./text2motion/glove', 'our_vab')
     n_txt_vocab = len(w_vectorizer) + 1
     _, _, opt.txt_start_idx = w_vectorizer['sos/OTHER']
     _, _, opt.txt_end_idx = w_vectorizer['eos/OTHER']
