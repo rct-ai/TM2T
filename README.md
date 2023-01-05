@@ -8,8 +8,10 @@
 Anaconda is recommended to create this virtual environment.
   
   ```sh
-  conda create -f environment.yaml
+  conda env create -f environment.yaml
   conda activate tm2t
+  pip install git+https://github.com/Maluuba/nlg-eval.git@master
+  pip3 install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.2.0/en_core_web_sm-3.2.0.tar.gz
   ```
   
 If you cannot successfully create the environment, here is a list of required libraries:

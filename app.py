@@ -31,7 +31,7 @@ app = Flask(__name__)
 
 
 def plot_t2m(data, captions, save_dir):
-    data = data * std + mean
+    data = data * std + mean  # (1 ,192, 263)
     for i in range(len(data)):
         joint_data = data[i]
         caption = captions[i]
@@ -39,10 +39,10 @@ def plot_t2m(data, captions, save_dir):
         joint = motion_temporal_filter(joint)
         save_path = '%s_%02d.mp4' % (save_dir, i)
         np.save('%s_%02d.npy' % (save_dir, i),
-                {'motion': data, 'text': captions, 'lengths': len(data),
+                {'motion': [data], 'text': [captions], 'lengths': [len(data)],
                  'num_samples': 1, 'num_repetitions': 1})
 
-        np.save('%s_%02d.npy' % (save_dir, i), joint)
+        # np.save('%s_%02d.npy' % (save_dir, i), joint)
         plot_3d_motion(save_path, kinematic_chain, joint, title=caption, fps=fps, radius=radius)
         return save_path
 
